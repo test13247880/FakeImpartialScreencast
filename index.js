@@ -56,7 +56,7 @@ app.post('/otherEndpoint', (req, res) => {
 });
 
 // WhatsApp
-async function sendToWhatsApp(recipientNumber, body) {
+function sendToWhatsApp(recipientNumber, body) {
   try {
     var phoneNumberID = '127927877080233';
     var accessToken = 'EAAMQK9ZBrFZB0BO4ZAWADZAZAmjBDIuZCqu5IdPXHvkr1GRkbMCeSeBqb6S80E1DsSAGTEEZC8ckNIMLvj9ZCUQUgIMvqNxmNZAufNjJKtyBo0fLDopFZCioQRCS8zydZAZCweE3HPit90b9ypU2dukWqY2AgfrevZC46EXGV1ICZBj0EPxanQCKZBHkVe8VRGPWm3VlCDLJFRpSi37F5UjdZBVmkm5BMvFtUtCF1QCtmhev';
@@ -98,15 +98,14 @@ async function sendToWhatsApp(recipientNumber, body) {
       'body': JSON.stringify(message),
     };
 
-    const response = await fetch(url, options);
+    const response = fetch(url, options);
 
     if (response.status === 200) {
       console.log('Message sent successfully!');
     } else {
       console.error('Error sending message. Status:', response.status);
 
-      // Additional error handling
-      const responseBody = await response.text();
+
       console.error('Response Body:', responseBody);
 
       try {

@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
 // Handle POST requests to /webhook endpoint
 app.post('/', async (req, res) => {
   try {
-    sendToWhatsApp("917397304720", "Someone had Texted On Whatsapp Business");
     console.log('Incoming POST request to /webhook:', JSON.stringify(req.body));
 
     // Assuming req.body contains the expected data

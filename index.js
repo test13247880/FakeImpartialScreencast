@@ -1,10 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 
-
 const app = express();
 
-
+//https://endpoint-test-njmo.onrender.com/
 const port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
@@ -15,6 +14,7 @@ app.get('/', (req, res) => {
     if (req.query['hub.mode'] === 'subscribe' && req.query['hub.verify_token'] === 'token') {
       console.log('Verification successful. Responding to challenge.');
       res.send(req.query['hub.challenge']);
+
     } else {
       console.error('Invalid verification parameters in GET request.');
       res.status(400).send({ error: 'Invalid verification parameters' });
@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 // Handle POST requests to /webhook endpoint
-app.post('/webhook', async (req, res) => {
+app.post('/', async (req, res) => {
   try {
     sendToWhatsApp("917397304720", "Someone had Texted On Whatsapp Business");
     console.log('Incoming POST request to /webhook:', JSON.stringify(req.body));
